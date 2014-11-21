@@ -37,11 +37,25 @@ function logIn() {
             }
         } else {
             viewProfilePicture(authData);
-            houseDetails();
+            checkIfHouseExists();
             $(".logged-in").slideDown("slow");
             $(".logged-out").slideUp("slow");
         }
     });
+}
+
+function checkIfHouseExists(){
+    var userRef = myFirebaseRef.child("users");
+    userRef.child(authData.uid).on("value",function(snapshot){
+        var data = snapshot.val();
+        if(data.houseID==null){
+            $(".logged-in-no-house").show();
+            $(".logged-in").hide();
+        }
+        else{
+            $(".logged-in-no-house").hide();
+        }
+    })
 }
 
 
