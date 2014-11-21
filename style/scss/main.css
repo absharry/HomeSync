@@ -1,26 +1,6 @@
-/* line 1, C:/Users/Adam/Git/Documents/HomeSync/style/scss/main.scss */
-.container {
-  height: 100%; }
-  /* line 3, C:/Users/Adam/Git/Documents/HomeSync/style/scss/main.scss */
-  .container .module-box {
-    background-color: #ccc;
-    border: 1px solid #333;
-    border-radius: 5px; }
-  /* line 8, C:/Users/Adam/Git/Documents/HomeSync/style/scss/main.scss */
-  .container .login-wrapper {
-    display: table;
-    position: absolute;
-    height: 100%;
-    width: 100%; }
-    /* line 14, C:/Users/Adam/Git/Documents/HomeSync/style/scss/main.scss */
-    .container .login-wrapper .login-area {
-      display: table-cell;
-      vertical-align: middle;
-      width: 400px;
-      margin: 0 auto; }
-      /* line 20, C:/Users/Adam/Git/Documents/HomeSync/style/scss/main.scss */
-      .container .login-wrapper .login-area h1, .container .login-wrapper .login-area h2 {
-        text-align: center;
-        color: #333; }
+/* line 3, C:/Users/Adam/Git/Documents/HomeSync/style/scss/main.scss */
+* {
+  font-size: 100%;
+  font-family: Arimo, Helvetica, Ariel, sans-serif; }
 
 /*# sourceMappingURL=main.css.map */
