@@ -33,6 +33,7 @@ input[type=text] {
 
 .welcome-wrapper {
 	@include shadow();
+	@include clearfix();
 	margin: 100px auto;
 	padding: 10px 20px;
 	width: 100%;
