@@ -31,6 +31,13 @@ input[type=text] {
 	font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
 }
 
+#icon-menu {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	right: 50%;
+}
+
 #digs-nav {
 	#main-digs-logo {
 		height: 60px;
@@ -89,6 +96,8 @@ input[type=text] {
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
 		border-radius: 3px;
+		list-style-type: none;
+		margin-top: 10px
 
 
 		strong {
