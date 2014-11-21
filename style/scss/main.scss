@@ -81,11 +81,20 @@ input[type=text] {
 }
 
 #example-messages {
-	li {
-		font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
+	ul {
+		
+		li {
+			font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
+			background-color: #fff;
+			padding: 10px 15px;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
 
-		strong {
-			margin-right: 1em;
+
+			strong {
+				margin-right: 1em;
+			}
 		}
 	}
 }
