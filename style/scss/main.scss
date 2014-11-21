@@ -31,6 +31,12 @@ input[type=text] {
 	font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
 }
 
+#digs-nav {
+	#main-digs-logo {
+		height: 60px;
+	}
+}
+
 .welcome-wrapper {
 	@include shadow();
 	@include clearfix();
