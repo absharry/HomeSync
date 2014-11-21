@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="style/css/main.css">
-    <style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+    </style>
 
     <!--[if IE]>
         <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -33,11 +42,15 @@
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="active"><a href="#">Home</a>
+                    </li>
+                    <li><a href="#about">About</a>
+                    </li>
+                    <li><a href="#contact">Contact</a>
+                    </li>
                 </ul>
-            </div><!--.nav-collapse -->
+            </div>
+            <!--.nav-collapse -->
         </div>
     </nav>
 
@@ -47,14 +60,25 @@
             <h2>The houseshare management portal</h2>
         </div>
         <div class="loginContainer">
-            <button onClick="logIn()">Login!</button>
+            <button class = logInButton onClick="logIn()">Login!</button>
             <div class="profilePicture"></div>
         </div>
     </div>
 
+    <div class="example-chat l-demo-container">
+        
+        <ul id='example-messages' class="example-chat-messages"></ul>
+
+        <footer>
+            <input type='text' id='messageInput' placeholder='Type a message...'>
+        </footer>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
     <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
     <script src="js/site.js"></script>
 </body>
+
 </html>
