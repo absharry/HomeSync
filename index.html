@@ -39,12 +39,25 @@
         </div>
     </div>
 
-    <div class="container logged-in row-fluid" style="display: none;">
+
+    <div class="container logged-in-no-house row-fluid" style="display: none;">
+        <div class="addHouse">
+            <input type="text" id="houseNickName" placeholder="Enter House Name">
+            <input type="text" id="AddressFirstLine" placeholder="First Line of Address">
+            <input type="text" id="AddressTown" placeholder="Town">
+            <input type="text" id="AddressCounty" placeholder="County">
+            <input type="text" id="AddressPostCode" placeholder="Postcode">
+            <button onClick="addHouse()">SUBMIT</button>
+        </div>
+    </div>
 
 
-        <div class="span8 left-column">
+    <div class="container logged-in row" style="display: none;">
 
-            <div class="addHouse ">
+
+        <div class="col-md-8 left-column">
+
+            <div class="addHouse">
                 <input type="text" id="houseNickName" placeholder="Enter House Name">
                 <input type="text" id="AddressFirstLine" placeholder="First Line of Address">
                 <input type="text" id="AddressTown" placeholder="Town">
@@ -64,7 +77,7 @@
 
         </div>
 
-        <div class="span4 left-column">
+        <div class="col-md-4 right-column">
 
         </div>
         
