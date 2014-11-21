@@ -5,13 +5,12 @@ var isNewUser = true;
 myFirebaseRef.onAuth(function (authData) {
     if (authData && isNewUser) {
         myFirebaseRef.child('users').child(authData.uid).set(authData);
-        $("button").attr("onClick","logOut()");
-        $("button").html("log Out");
+        $(".logInButton").attr("onClick", "logOut()");
+        $(".logInButton").html("Log Out!");
         viewProfilePicture(authData);
-    }
-    else{
-        $("button").attr("onClick","logIn()");
-        $("button").html("log In");
+    } else {
+        $(".logInButton").attr("onClick", "logIn()");
+        $(".logInButton").html("Login!");
     }
 });
 
@@ -26,18 +25,18 @@ function logIn() {
         }
     });
 }
-    
-    function viewProfilePicture(authData){
-        myFirebaseRef.child('users').child(authData.uid).child('facebook').child('cachedUserProfile').child('picture').child('data').child("url").on("value",function(snapshot){
-            $(".profilePicture").html( "<img src='" + snapshot.val() + "'>");
-        })
-    }
 
-function removeProfilePicture(){
-    $(".profilePicture").html( "");
+function viewProfilePicture(authData) {
+    myFirebaseRef.child('users').child(authData.uid).child('facebook').child('cachedUserProfile').child('picture').child('data').child("url").on("value", function (snapshot) {
+        $(".profilePicture").html("<img src='" + snapshot.val() + "'>");
+    })
 }
 
-function logOut(){
+function removeProfilePicture() {
+    $(".profilePicture").html("");
+}
+
+function logOut() {
     myFirebaseRef.unauth();
     removeProfilePicture();
     alert("Logged Out!");
