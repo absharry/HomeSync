@@ -25,7 +25,7 @@
         <h1>Digs</h1>
     </nav>
 
-    <div class="container">
+    <div class="container logged-out" style="display: inline-block;">
         <div class="welcomeTitle">
             <h1 class="title">Welcome to Digs</h1>
             <h2>The houseshare management portal</h2>
@@ -36,22 +36,26 @@
         </div>
     </div>
 
-    <div class="example-chat l-demo-container">
-        
-        <ul id='example-messages' class="example-chat-messages"></ul>
+    <div class="container logged-in" style="display: none;">
 
-        <footer>
-            <input type='text' id='messageInput' placeholder='Type a message...'>
-        </footer>
-    </div>
-    
-    <div class="addHouse">
-        <input type="text" id="houseNickName" placeholder="Enter House Name">
-        <input type="text" id="AddressFirstLine" placeholder="First Line of Address">
-        <input type="text" id="AddressTown" placeholder="Town">
-        <input type="text" id="AddressCounty" placeholder="County">
-        <input type="text" id="AddressPostCode" placeholder="Postcode">
-        <button onClick="addHouse()">SUBMIT</button>
+        <div class="example-chat l-demo-container">
+            
+            <ul id='example-messages' class="example-chat-messages"></ul>
+
+            <footer>
+                <input type='text' id='messageInput' placeholder='Type a message...'>
+            </footer>
+        </div>
+        
+        <div class="addHouse">
+            <input type="text" id="houseNickName" placeholder="Enter House Name">
+            <input type="text" id="AddressFirstLine" placeholder="First Line of Address">
+            <input type="text" id="AddressTown" placeholder="Town">
+            <input type="text" id="AddressCounty" placeholder="County">
+            <input type="text" id="AddressPostCode" placeholder="Postcode">
+            <button onClick="addHouse()">SUBMIT</button>
+        </div>
+
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
