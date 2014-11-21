@@ -27,6 +27,10 @@ function logIn() {
     });
 }
 
+function houseDetails(){
+    
+}
+
 function viewProfilePicture(authData) {
     myFirebaseRef.child('users').child(authData.uid).child('facebook').child('cachedUserProfile').child('picture').child('data').child("url").on("value", function (snapshot) {
         $(".profilePicture").html("<img src='" + snapshot.val() + "'>");
@@ -42,11 +46,13 @@ messages = myFirebaseRef.child('messages');
 messageField.keypress(function (e) {
     if (e.keyCode == 13) {
         //FIELD VALUES
-        var username = authData.uid;
+        var uid = authData.uid;
+        var name = authData.facebook.displayName;
         var message = messageField.val();
 
         messages.push({
-            name: username,
+            uid: uid,
+            name: name,
             text: message
         });
         messageField.val('');
@@ -56,14 +62,10 @@ messageField.keypress(function (e) {
 messages.limit(10).on('child_added', function (snapshot) {
     //GET DATA
     var data = snapshot.val();
-    var userID = data.name
+    var userID = data.uid;
+    var username = data.name;
     var message = data.text;
     
-    var username;
-    
-    myFirebaseRef.child('users').child(userID).child('facebook').child('displayName').on("value",function(snapshot){
-        username = snapshot.val();
-    });
     var messageElement = $("<li>");
     var nameElement = $("<strong class='example-chat-username'></strong>")
     nameElement.text(username);
