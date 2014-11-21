@@ -5,11 +5,6 @@ var authData = myFirebaseRef.getAuth();
 myFirebaseRef.onAuth(function (authData) {
     if (authData) {
         myFirebaseRef.child('users').child(authData.uid).update(authData);
-        $(".logInButton").attr("onClick", "logOut()");
-        $(".logInButton").html("Log Out!");
-        $(".title").html("Welcome " + authData.facebook.cachedUserProfile.first_name + "!");
-        viewProfilePicture(authData);
-        houseDetails();
     } else {
         $(".logInButton").attr("onClick", "logIn()");
         $(".logInButton").html("Login!");
@@ -22,12 +17,12 @@ function houseDetails() {
     userRef.child(authData.uid).child("houseID").on("value", function (snapshot) {
         var houseID = snapshot.val();
         if (houseID != null) {
-            houseRef.child(houseID).on("value",function(snapshot){
+            houseRef.child(houseID).on("value", function (snapshot) {
                 var data = snapshot.val();
                 var housename = data.nickName;
                 $("#houseName").html("The houseshare management portal for " + housename);
             });
-            
+
         }
     });
 }
@@ -40,6 +35,11 @@ function logIn() {
                     this.authData = authData;
                 })
             }
+        } else {
+            viewProfilePicture(authData);
+            houseDetails();
+            $(".logged-in").slideDown("slow");
+            $(".logged-out").slideUp("slow");
         }
     });
 }
