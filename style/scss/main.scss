@@ -53,8 +53,15 @@ input[type=text] {
 		@include clearfix();
 		width: 100%;
 		height: 35px;
+		h2 {
+			font-size: 24px;
+		}
+		#login-digs-logo {
+			width: 75%;
+		}
 		.logInButton {
 			width: 100%;
+			height: 35px;
 			background-color: #B7524D;
 			color: #fff;
 			margin-top: 20px;
