@@ -6,22 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>DIGS</title>
+    <title>Digs</title>
     <link rel="shortcut icon" href="">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arimo">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Coming+Soon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="style/css/main.css">
-    <style>
-        body {
-            padding-top: 50px;
-        }
-        .starter-template {
-            padding: 40px 15px;
-            text-align: center;
-        }
-    </style>
 
     <!--[if IE]>
         <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -30,63 +21,43 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Project name</a>
-            </div>
-
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a>
-                    </li>
-                    <li><a href="#about">About</a>
-                    </li>
-                    <li><a href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!--.nav-collapse -->
-        </div>
+    <nav id="digs-nav" role="navigation">
+        <img id="main-digs-logo" src="../img/logo.png"/>
     </nav>
 
-    <div class="container">
-        <div class="welcomeTitle">
-            <h1 class="title">Welcome to DIGS</h1>
-            <h2 id="houseName">The houseshare management portal</h2>
-        </div>
-        <div class="loginContainer">
-            <button class = logInButton onClick="logIn()">Login!</button>
-            <div class="profilePicture"></div>
+    <div class="container logged-out" style="display: inline;">
+        <div class="welcome-wrapper">
+            <div class="welcomeTitle">
+                <h1 class="title">Welcome to Digs</h1>
+                <h2>The houseshare management portal</h2>
+            </div>
+            <div class="loginContainer">
+                <button class = logInButton onClick="logIn()">Login!</button>
+                <div class="profilePicture"></div>
+            </div>
         </div>
     </div>
 
-    <div class="example-chat l-demo-container">
+    <div class="container logged-in" style="display: none;">
+
+        <div class="example-chat l-demo-container">
+            
+            <ul id='example-messages' class="example-chat-messages"></ul>
+
+            <footer>
+                <input type='text' id='messageInput' placeholder='Type a message...'>
+            </footer>
+        </div>
         
-        <ul id='example-messages' class="example-chat-messages"></ul>
+        <div class="addHouse">
+            <input type="text" id="houseNickName" placeholder="Enter House Name">
+            <input type="text" id="AddressFirstLine" placeholder="First Line of Address">
+            <input type="text" id="AddressTown" placeholder="Town">
+            <input type="text" id="AddressCounty" placeholder="County">
+            <input type="text" id="AddressPostCode" placeholder="Postcode">
+            <button onClick="addHouse()">SUBMIT</button>
+        </div>
 
-        <footer>
-            <input type='text' id='messageInput' placeholder='Type a message...'>
-        </footer>
-    </div>
-    
-    <div class="addHouse">
-        <input type="text" id="AddressFirstLine" placeholder="First Line of Address">
-        <input type="text" id="AddressTown" placeholder="Town">
-        <input type="text" id="AddressCounty" placeholder="County">
-        <input type="text" id="AddressPostCode" placeholder="Postcode">
-        <button onClick="addHouse()">SUBMIT</button>
-        <br/>
-        <br/>
-        <br/>      
-        <input type="text" id="houseNickName">
-        <button onClick="setHouseNickname()">SUBMIT</button>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
