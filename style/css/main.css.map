@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,CAAE,CACD,SAAS,CAAE,IAAI,CACf,WAAW,CAAE,mCAAmC,CAIhD,oBAAG,CACF,WAAW,CAAE,sDAAsD",
+"mappings": "AAEA,CAAE,CACD,SAAS,CAAE,IAAI,CACf,WAAW,CAAE,mCAAmC,CAIhD,oBAAG,CACF,WAAW,CAAE,sDAAsD,CAEnE,2BAAO,CACN,YAAY,CAAE,GAAG",
 "sources": ["../scss/main.scss"],
 "names": [],
 "file": "main.css"
