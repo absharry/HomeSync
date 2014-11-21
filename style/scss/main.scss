@@ -1,26 +1,4 @@
-.container{
-height: 100%;
-	.module-box {
-		background-color: #ccc;
-		border: 1px solid #333;
-		border-radius: 5px;
-	}
-	.login-wrapper {
-	    display: table;
-	    position: absolute;
-	    height: 100%;
-	    width: 100%;
-
-		.login-area {
-		    display: table-cell;
-    		vertical-align: middle;
-			width: 400px;
-			margin: 0 auto;
-
-			h1, h2 {
-				text-align: center;
-				color: #333;
-			}
-		}
-	}
+* {
+ font-size: 100%;
+ font-family: Arimo;
 }
