@@ -27,8 +27,41 @@ function logIn() {
     });
 }
 
-function houseDetails(){
+function checkIfHouseExists() {
+    var houseName = $("#houseName");
+    var houseRef = myFirebaseRef.child("houses");
+
+    houseRef.child(houseName).once('value', function (snapshot) {
+        var exists = (snapshot.val() !== null);
+        userExistsCallback(userId, exists);
+    });
+}
+
+function addHouse() {
+    var houseRef = myFirebaseRef.child("houses");
+    var nickname = $("#houseNickName");
+    var AddressFirstLine = $("#AddressFirstLine");
+    var AddressTown = $("#AddressTown");
+    var AddressCounty = $("#AddressCounty");
+    var AddressPostCode = $("#AddressPostCode");
     
+    var newHouse = houseRef.push({
+        nickname: nickname.val(),
+        firstLine: AddressFirstLine.val(),
+        town: AddressTown.val(),
+        county:AddressCounty.val(),
+        postcode:AddressPostCode.val()
+    });
+    
+    var uid = newHouse.key();
+    
+    newHouse.update({
+        uid: uid
+    });
+}
+
+function houseDetails() {
+
 }
 
 function viewProfilePicture(authData) {
@@ -65,7 +98,7 @@ messages.limit(10).on('child_added', function (snapshot) {
     var userID = data.uid;
     var username = data.name;
     var message = data.text;
-    
+
     var messageElement = $("<li>");
     var nameElement = $("<strong class='example-chat-username'></strong>")
     nameElement.text(username);
