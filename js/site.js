@@ -27,6 +27,14 @@ function houseDetails() {
     });
 }
 
+function checkLogInState(){
+    if(authData){
+        
+    }else{
+        logIn();
+    }
+}
+
 function logIn() {
     myFirebaseRef.authWithOAuthPopup("facebook", function (err, authData) {
         if (err) {
