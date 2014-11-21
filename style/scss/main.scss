@@ -4,3 +4,17 @@ $royalBlue: #002366;
  font-size: 100%;
  font-family: Arimo, Helvetica, Ariel, sans-serif;
 }
+
+input[type=text] {
+	font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
+}
+
+#example-messages {
+	li {
+		font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
+
+		strong {
+			margin-right: 1em;
+		}
+	}
+}
