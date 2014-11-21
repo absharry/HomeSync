@@ -59,7 +59,7 @@
     <div class="container">
         <div class="welcomeTitle">
             <h1 class="title">Welcome to DIGS</h1>
-            <h2>The houseshare management portal</h2>
+            <h2 id="houseName">The houseshare management portal</h2>
         </div>
         <div class="loginContainer">
             <button class = logInButton onClick="logIn()">Login!</button>
@@ -77,12 +77,16 @@
     </div>
     
     <div class="addHouse">
-        <input type="text" id="houseNickName" placeholder="Enter House Name">
         <input type="text" id="AddressFirstLine" placeholder="First Line of Address">
         <input type="text" id="AddressTown" placeholder="Town">
         <input type="text" id="AddressCounty" placeholder="County">
         <input type="text" id="AddressPostCode" placeholder="Postcode">
         <button onClick="addHouse()">SUBMIT</button>
+        <br/>
+        <br/>
+        <br/>      
+        <input type="text" id="houseNickName">
+        <button onClick="setHouseNickname()">SUBMIT</button>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

@@ -1,19 +1,36 @@
 var myFirebaseRef = new Firebase("https://boiling-torch-2013.firebaseio.com/");
 
-var isNewUser = true;
 var authData = myFirebaseRef.getAuth();
 
 myFirebaseRef.onAuth(function (authData) {
-    if (authData && isNewUser) {
-        myFirebaseRef.child('users').child(authData.uid).set(authData);
+    if (authData) {
+        myFirebaseRef.child('users').child(authData.uid).update(authData);
         $(".logInButton").attr("onClick", "logOut()");
         $(".logInButton").html("Log Out!");
+        $(".title").html("Welcome " + authData.facebook.cachedUserProfile.first_name + "!");
         viewProfilePicture(authData);
+        houseDetails();
     } else {
         $(".logInButton").attr("onClick", "logIn()");
         $(".logInButton").html("Login!");
     }
 });
+
+function houseDetails() {
+    houseRef = myFirebaseRef.child("houses");
+    userRef = myFirebaseRef.child("users");
+    userRef.child(authData.uid).child("houseID").on("value", function (snapshot) {
+        var houseID = snapshot.val();
+        if (houseID != null) {
+            houseRef.child(houseID).on("value",function(snapshot){
+                var data = snapshot.val();
+                var housename = data.nickName;
+                $("#houseName").html("The houseshare management portal for " + housename);
+            });
+            
+        }
+    });
+}
 
 function logIn() {
     myFirebaseRef.authWithOAuthPopup("facebook", function (err, authData) {
@@ -27,41 +44,43 @@ function logIn() {
     });
 }
 
-function checkIfHouseExists() {
-    var houseName = $("#houseName");
-    var houseRef = myFirebaseRef.child("houses");
-
-    houseRef.child(houseName).once('value', function (snapshot) {
-        var exists = (snapshot.val() !== null);
-        userExistsCallback(userId, exists);
-    });
-}
 
 function addHouse() {
     var houseRef = myFirebaseRef.child("houses");
-    var nickname = $("#houseNickName");
     var AddressFirstLine = $("#AddressFirstLine");
     var AddressTown = $("#AddressTown");
     var AddressCounty = $("#AddressCounty");
     var AddressPostCode = $("#AddressPostCode");
-    
+
     var newHouse = houseRef.push({
-        nickname: nickname.val(),
         firstLine: AddressFirstLine.val(),
         town: AddressTown.val(),
-        county:AddressCounty.val(),
-        postcode:AddressPostCode.val()
+        county: AddressCounty.val(),
+        postcode: AddressPostCode.val()
     });
-    
+
     var uid = newHouse.key();
-    
+
     newHouse.update({
         uid: uid
     });
+
+    var userRef = myFirebaseRef.child("users");
+    userRef.child(authData.uid).update({
+        houseID: uid
+    });
 }
 
-function houseDetails() {
-
+function setHouseNickname() {
+    var houseRef = myFirebaseRef.child("houses");
+    var userRef = myFirebaseRef.child("users").child(authData.uid);
+    var houseNickName = $("#houseNickName").val();
+    userRef.on("value", function (snapshot) {
+        var data = snapshot.val();
+        houseRef.child(data.houseID).update({
+            nickName: houseNickName
+        });
+    });
 }
 
 function viewProfilePicture(authData) {
@@ -78,7 +97,6 @@ var messageList = $('#example-messages');
 messages = myFirebaseRef.child('messages');
 messageField.keypress(function (e) {
     if (e.keyCode == 13) {
-        //FIELD VALUES
         var uid = authData.uid;
         var name = authData.facebook.displayName;
         var message = messageField.val();
@@ -86,6 +104,8 @@ messageField.keypress(function (e) {
         messages.push({
             uid: uid,
             name: name,
+            type: null,
+            timeStamp: Date.now(),
             text: message
         });
         messageField.val('');
