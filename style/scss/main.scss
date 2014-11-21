@@ -37,9 +37,11 @@ input[type=text] {
 	.loginContainer {
 		width: 100%;
 		height: 35px;
-		.loginButton {
+		.logInButton {
+			width: 100%;
 			background-color: #B7524D;
 			color: #fff;
+			margin-top: 20px;
 		}
 	}
 }
