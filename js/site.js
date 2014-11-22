@@ -72,10 +72,10 @@ function addUserToHouse() {
     var houseID = $("#existingKey");
 
     userRef.child(authData.uid).update({
-        houseID: uid
+        houseID: houseID.val()
     });
 
-    houseRef.child(houseID).child("members").push({
+    houseRef.child(houseID.val()).child("members").push({
         uid: authData.uid,
         profilePicture: authData.facebook.cachedUserProfile.picture.data.url
     });
