@@ -130,7 +130,7 @@ function viewProfilePicture(authData) {
         console.log(data);
         $("#currentUsersProfilePicture").attr("src", data);
     });
-    
+
     getHouseHoldProfilePictures();
 }
 
@@ -145,8 +145,11 @@ function getHouseHoldProfilePictures() {
 
         houseRef.child(houseID).child("members").child("uid").orderByChild("uid").on("value", function (snapshot) {
             var data = snapshot.val();
-            var profilePicture = $("<li><img src='"+data.profilePicture+"'></li>");
-            pictureList.append(profilePicture);
+            if (data.uid != authData.uid) {
+                var profilePicture = $("<li><img src='" + data.profilePicture + "'></li>");
+                pictureList.append(profilePicture);
+            }
+
         })
     })
 }
