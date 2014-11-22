@@ -50,12 +50,10 @@ function logIn() {
     });
 }
 
-function loggedIn(){
+function loggedIn() {
     viewProfilePicture(authData);
-            checkIfHouseExists();
-            houseDetails();
-            $(".logged-in").slideDown("slow");
-            $(".logged-out").slideUp("slow");
+    checkIfHouseExists();
+    houseDetails();
 }
 
 function checkIfHouseExists() {
@@ -96,7 +94,7 @@ function addHouse() {
     var AddressCounty = $("#AddressCounty");
     var AddressPostCode = $("#AddressPostCode");
     var houseNickName = $("#houseNickName").val();
-    
+
     var newHouse = houseRef.push({
         firstLine: AddressFirstLine.val(),
         town: AddressTown.val(),
