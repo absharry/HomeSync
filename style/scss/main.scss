@@ -22,6 +22,19 @@ body {
 	background-color: $lightGrey;
 }
 
+.houseDetails{
+    position: relative;
+    padding: 20px;
+    background-color: red;
+    height: 100px;
+    width: 400px;
+}
+
+#houseName{
+    color: white;
+    font-size: 20px;
+}
+
 * {
  font-size: 100%;
  font-family: Arimo, Helvetica, Ariel, sans-serif;
