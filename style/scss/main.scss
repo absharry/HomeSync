@@ -31,11 +31,26 @@ input[type=text] {
 	font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
 }
 
+#digs-nav {
+  position: relative;
+}
+
 #icon-menu {
 	position: absolute;
 	top: 0;
 	left: 50%;
-	right: 50%;
+	margin-left: -250px;
+	width: 500px;
+	float: left;
+	ul {
+		padding: 0;
+		li {
+			list-style-type: none;
+			float: left;
+			width: 100px;
+			text-align: center;
+		} 
+	}
 }
 
 #digs-nav {
