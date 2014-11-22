@@ -42,6 +42,11 @@ body {
     	width: 100%;
     	margin: 0 0 10px;
     }
+
+    .otherHouseUsers {
+    	float: left;
+    }
+
     #houseHoldProfilePictures {
     	float: left;
     	padding: 0;
@@ -164,12 +169,17 @@ input[type=text] {
 	#example-messages {
 		padding: 0 !important;
 		li {
+
 			font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
 			background-color: #fff;
 			padding: 10px 15px;
 			list-style-type: none;
 			margin-top: 10px !important;
 
+			.uploadedImage {
+				width: 100%;
+				max-width: 100%;
+			}
 
 			.example-chat-username {
 				display: inline-block;
