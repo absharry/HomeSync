@@ -168,52 +168,63 @@ function messaging() {
     var nameField = authData.facebook.displayName;
     var picture = $('#pictureInput');
 
-    var uid = authData.uid;
-    var name = authData.facebook.displayName;
-    var message = messageField.val();
-    var messages = myFirebaseRef.child('messages');
+    userRef.child(authData.uid).child("houseID").on("value", function (snapshot) {
+        var houseID = snapshot.val();
+        var uid = authData.uid;
+        var name = authData.facebook.displayName;
+        var message = messageField.val();
+        var messages = myFirebaseRef.child('messages');
 
-    messages.push({
-        uid: uid,
-        name: name,
-        timeStamp: Date.now(),
-        picture: picture.val(),
-        text: message
-    });
-    messageField.val('');
-    picture.val('');
+        messages.push({
+            uid: uid,
+            houseID: houseID,
+            name: name,
+            timeStamp: Date.now(),
+            picture: picture.val(),
+            text: message
+        });
+        messageField.val('');
+        picture.val('');
+    })
 }
 
-$(function () {
-    messages = myFirebaseRef.child('messages');
+
+$(function showMessage() {
+    var messages = myFirebaseRef.child('messages');
+    var userRef = myFirebaseRef.child("users");
     var messageList = $('#example-messages');
 
-    messages.limit(10).on('child_added', function (snapshot) {
-        //GET DATA
-        var data = snapshot.val();
-        var userID = data.uid;
-        var username = data.name;
-        var message = data.text;
-        var picture = data.picture;
+    userRef.child(authData.uid).child("houseID").on("value", function (snapshot) {
+        var currentHouseID = snapshot.val();
 
-        var messageElement = $("<li>");
-        var nameElement = $("<strong class='example-chat-username'></strong>");
+        messages.limit(10).on('child_added', function (snapshot) {
+            //GET DATA
+            var data = snapshot.val();
+            var userID = data.uid;
+            var username = data.name;
+            var message = data.text;
+            var picture = data.picture;
+            var houseID = data.houseID;
+
+            if (houseID == currentHouseID) {
+                var messageElement = $("<li>");
+                var nameElement = $("<strong class='example-chat-username'></strong>");
 
 
-        nameElement.text(username);
-        messageElement.text(message).prepend(nameElement);
+                nameElement.text(username);
+                messageElement.text(message).prepend(nameElement);
 
-        if (picture) {
-            var imageElement = $("<img class='uploadedImage' src='" + picture + "'>");
-            messageElement.append(imageElement);
-        }
-        messageList.prepend(messageElement);
+                if (picture) {
+                    var imageElement = $("<img class='uploadedImage' src='" + picture + "'>");
+                    messageElement.append(imageElement);
+                }
+                messageList.prepend(messageElement);
 
-        messageList[0].scrollTop = messageList[0].scrollHeight;
-
-    });
+                messageList[0].scrollTop = messageList[0].scrollHeight;
+            }
+        });
+    })
 })
-
 
 
 function removeProfilePicture() {
