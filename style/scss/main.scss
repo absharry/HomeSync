@@ -202,8 +202,12 @@ input[type=text] {
 }
 
 .demo-module {
-	width: 100%;
 	background-color: $midGrey;
+
+	img {
+		width: 100%;
+		max-width: 100%;
+	}
 }
 
 .module {
