@@ -108,7 +108,7 @@ function setHouseNickname() {
 
 function viewProfilePicture(authData) {
     myFirebaseRef.child('users').child(authData.uid).child('facebook').child('cachedUserProfile').child('picture').child('data').child("url").on("value", function (snapshot) {
-        $(".profilePicture").html("<img src='" + snapshot.val() + "'>");
+        $("#currentUsersProfilePicture").attr("src",snapshot.Val());
     })
 }
 
