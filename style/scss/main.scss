@@ -25,9 +25,9 @@ body {
 .houseDetails{
     position: relative;
     padding: 20px;
-    background-color: red;
+    background-color: $red;
     height: 100px;
-    width: 400px;
+    width: 100%
 }
 
 #houseName{
@@ -36,8 +36,8 @@ body {
 }
 
 * {
- font-size: 100%;
- font-family: Arimo, Helvetica, Ariel, sans-serif;
+	font-size: 100%;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 }
 
 input[type=text] {
@@ -99,7 +99,8 @@ input[type=text] {
 			font-size: 24px;
 		}
 		#login-digs-logo {
-			width: 75%;
+			width: 100%;
+			max-width: 100%;
 		}
 		.logInButton {
 			width: 100%;
@@ -123,21 +124,40 @@ input[type=text] {
 }
 
 #example-messages {
-		
+	padding: 15px 0;
+
+	#messageInput {
+		width: 100%;
+		height: 5em;
+	}
+
 	li {
 		font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
 		background-color: #fff;
 		padding: 10px 15px;
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;
-		border-radius: 3px;
 		list-style-type: none;
 		margin-top: 10px
 
 
 		strong {
+			display: inline-block;
+			border-bottom: 1px solid $darkGrey;
+			margin: 0.5em 0 1em;
 			margin-right: 1em;
 		}
 	}
+}
 
+.demo-module {
+	width: 100%;
+	height: 200px;
+	background-color: $midGrey;
+}
+
+.module {
+	margin-bottom: 30px;
+}
+
+.module-shadow {
+	@include shadow();
 }
