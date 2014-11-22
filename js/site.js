@@ -27,13 +27,14 @@ function houseDetails() {
     });
 }
 
-function checkLogInState() {
+$(function checkLogInState() {
     if (authData) {
-
+        $(".logged-out").hide();
+        loggedIn();
     } else {
-        logIn();
+        $(".logged-out").show();
     }
-}
+})
 
 function logIn() {
     myFirebaseRef.authWithOAuthPopup("facebook", function (err, authData) {
@@ -44,13 +45,17 @@ function logIn() {
                 })
             }
         } else {
-            viewProfilePicture(authData);
+            loggedIn();
+        }
+    });
+}
+
+function loggedIn(){
+    viewProfilePicture(authData);
             checkIfHouseExists();
             houseDetails();
             $(".logged-in").slideDown("slow");
             $(".logged-out").slideUp("slow");
-        }
-    });
 }
 
 function checkIfHouseExists() {
