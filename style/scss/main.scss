@@ -99,7 +99,8 @@ input[type=text] {
 			font-size: 24px;
 		}
 		#login-digs-logo {
-			width: 75%;
+			width: 100%;
+			max-width: 100%;
 		}
 		.logInButton {
 			width: 100%;
@@ -123,21 +124,23 @@ input[type=text] {
 }
 
 #example-messages {
-		
-	li {
-		font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
-		background-color: #fff;
-		padding: 10px 15px;
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;
-		border-radius: 3px;
-		list-style-type: none;
-		margin-top: 10px
+	ul {
+		padding: 0 100px;
+
+		li {
+			font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
+			background-color: #fff;
+			padding: 10px 15px;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			list-style-type: none;
+			margin-top: 10px
 
 
-		strong {
-			margin-right: 1em;
-		}
+			strong {
+				margin-right: 1em;
+			}
+		}	
 	}
-
 }
