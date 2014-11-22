@@ -163,22 +163,21 @@ function getHouseHoldProfilePictures() {
     })
 }
 
+function messaging() {
+    var messageField = $('#messageInput');
+    var nameField = authData.facebook.displayName;
+    var picture = $('#pictureInput');
 
-var messageField = $('#messageInput');
-var nameField = authData.facebook.displayName;
-var messageList = $('#example-messages');
-var picture = $('#pictureInput');
-
-messages = myFirebaseRef.child('messages');
-messageField.keypress(function (e) {
-    if (e.keyCode == 13) {
+    userRef.child(authData.uid).child("houseID").on("value", function (snapshot) {
+        var houseID = snapshot.val();
         var uid = authData.uid;
         var name = authData.facebook.displayName;
         var message = messageField.val();
-        var type;
+        var messages = myFirebaseRef.child('messages');
 
         messages.push({
             uid: uid,
+            houseID: houseID,
             name: name,
             timeStamp: Date.now(),
             picture: picture.val(),
@@ -186,34 +185,54 @@ messageField.keypress(function (e) {
         });
         messageField.val('');
         picture.val('');
-    }
-});
-
-messages.limit(10).on('child_added', function (snapshot) {
-    //GET DATA
-    var data = snapshot.val();
-    var userID = data.uid;
-    var username = data.name;
-    var message = data.text;
-    var picture = data.picture;
-
-    var messageElement = $("<li>");
-    var nameElement = $("<strong class='example-chat-username'></strong>");
+    })
+}
 
 
-    nameElement.text(username);
-    messageElement.text(message).prepend(nameElement);
+$(function showMessage() {
+    var messages = myFirebaseRef.child('messages');
+    var userRef = myFirebaseRef.child("users");
+    var messageList = $('#example-messages');
 
-    if (picture) {
-        var imageElement = $("<img class='uploadedImage' src='" + picture + "'>");
-        messageElement.append(imageElement);
-    }
-    messageList.prepend(messageElement);
+    userRef.child(authData.uid).child("houseID").on("value", function (snapshot) {
+        var currentHouseID = snapshot.val();
 
-    messageList[0].scrollTop = messageList[0].scrollHeight;
+        messages.limit(10).on('child_added', function (snapshot) {
+            //GET DATA
+            var data = snapshot.val();
+            var userID = data.uid;
+            var username = data.name;
+            var message = data.text;
+            var picture = data.picture;
+            var houseID = data.houseID;
 
-});
+            if (houseID == currentHouseID) {
+                var messageElement = $("<li>");
+                var nameElement = $("<strong class='example-chat-username'></strong>");
 
+
+                nameElement.text(username);
+                messageElement.text(message).prepend(nameElement);
+
+                if (picture) {
+                    var imageElement = $("<img class='uploadedImage' src='" + picture + "'>");
+                    messageElement.append(imageElement);
+                }
+                messageList.prepend(messageElement);
+
+                messageList[0].scrollTop = messageList[0].scrollHeight;
+            }
+        });
+    })
+})
+
+function changeToDoList(){
+    $(".toDoListCheckBox").each(function(){
+       if($(this).attr("value")){
+           $(this).css("text-decoration","line-through");
+       }
+    });
+}
 function removeProfilePicture() {
     $(".profilePicture").html("");
 }
