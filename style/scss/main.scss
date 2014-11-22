@@ -54,7 +54,7 @@ body {
     }
 
     #houseHoldProfilePictures {
-    	@include clearfix()
+    	@include clearfix();
     	float: left;
     	padding: 0;
     	li {
@@ -71,7 +71,7 @@ body {
 
 * {
 	font-size: 100%;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-family: "Open Sans", Helvetica, Arial, "Lucida Grande", sans-serif; 
 }
 
 input[type=text] {
@@ -203,7 +203,6 @@ input[type=text] {
 
 .demo-module {
 	width: 100%;
-	height: 200px;
 	background-color: $midGrey;
 }
 
