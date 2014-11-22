@@ -100,7 +100,7 @@ function addHouse() {
     
     var uid = newHouse.key();
     
-    newHouse.child("members").child(auth.uid).update({
+    newHouse.child("members").child("uidOfMembers").child(authData.uid).update({
         uid: authData.uid,
         profilePicture: authData.facebook.cachedUserProfile.picture.data.url
     });    
