@@ -20,6 +20,10 @@ $darkRed: #B7524D;
 
 body {
 	background-color: $lightGrey;
+
+	&> container {
+		margin-top: 30px;
+	}
 }
 
 .houseDetails{
@@ -127,27 +131,30 @@ input[type=text] {
 	}
 }
 
-#example-messages {
+.example-chat {
 	padding: 15px 0;
 
 	#messageInput {
-		width: 100%;
-		height: 5em;
+		width: 100% !important;
+		height: 5em !important;
 	}
 
-	li {
-		font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
-		background-color: #fff;
-		padding: 10px 15px;
-		list-style-type: none;
-		margin-top: 10px
+	#example-messages {
+		li {
+			font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
+			background-color: #fff;
+			padding: 10px 15px;
+			list-style-type: none;
+			margin-top: 10px !important;
 
 
-		strong {
-			display: inline-block;
-			border-bottom: 1px solid $darkGrey;
-			margin: 0.5em 0 1em;
-			margin-right: 1em;
+			.example-chat-username {
+				display: inline-block;
+				width: 100%;
+				border-bottom: 1px solid $darkGrey;
+				margin: 0.5em 0 1em;
+				margin-right: 1em;
+			}
 		}
 	}
 }
