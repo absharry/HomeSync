@@ -144,12 +144,15 @@ function getHouseHoldProfilePictures() {
         var houseID = snapshot.val();
 
         houseRef.child(houseID).child("members").child("uid").orderByChild("uid").on("value", function (snapshot) {
-            var data = snapshot.val();
-            if (data.uid != authData.uid) {
-                var profilePicture = $("<li><img src='" + data.profilePicture + "'></li>");
-                pictureList.append(profilePicture);
-            }
+            snapshot.forEach(function (childSnapshot) {
+                var data = childSnapshot.val();
 
+                if (data.uid != authData.uid) {
+                    var profilePicture = $("<li><img src='" + data.profilePicture + "'></li>");
+                    pictureList.append(profilePicture);
+                }
+
+            });
         })
     })
 }
@@ -167,15 +170,16 @@ messageField.keypress(function (e) {
         var name = authData.facebook.displayName;
         var message = messageField.val();
         var type;
-        
+
         messages.push({
             uid: uid,
             name: name,
             timeStamp: Date.now(),
-            picture:picture.val(),
+            picture: picture.val(),
             text: message
         });
         messageField.val('');
+        picture.val('');
     }
 });
 
@@ -189,13 +193,13 @@ messages.limit(10).on('child_added', function (snapshot) {
 
     var messageElement = $("<li>");
     var nameElement = $("<strong class='example-chat-username'></strong>");
-    
-    
+
+
     nameElement.text(username);
     messageElement.text(message).prepend(nameElement);
-    
-    if(picture){
-        var imageElement = $("<img class='uploadedImage' src='"+picture+"'>");
+
+    if (picture) {
+        var imageElement = $("<img class='uploadedImage' src='" + picture + "'>");
         messageElement.append(imageElement);
     }
     messageList.prepend(messageElement);
@@ -203,10 +207,6 @@ messages.limit(10).on('child_added', function (snapshot) {
     messageList[0].scrollTop = messageList[0].scrollHeight;
 
 });
-
-function showImageMessage(){
-    
-}
 
 function removeProfilePicture() {
     $(".profilePicture").html("");
