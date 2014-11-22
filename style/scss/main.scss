@@ -54,11 +54,12 @@ body {
     }
 
     #houseHoldProfilePictures {
+    	@include clearfix()
     	float: left;
     	padding: 0;
     	li {
     		list-style-type: none;
-
+    		float: left
     	}
     }
 }
