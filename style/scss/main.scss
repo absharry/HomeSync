@@ -217,3 +217,86 @@ input[type=text] {
 .module-shadow {
 	@include shadow();
 }
+
+.module-rounded {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#bill-overview {
+	background-color: #fff;
+	h2 {
+		display: inline-block;
+		width: 100%;
+		margin: 0;
+		padding: 5px;
+		text-align: center;
+	}
+	h3 {
+		font-size: 14px;
+		background-color: $red;
+		margin: 0;
+		color: white;
+		margin: 0;
+		padding: 5px;
+		text-align: center;
+	}
+	ul {
+		padding: 0;
+		margin: 0;
+		li {
+			font-size: 24px;
+			list-style-type: none;
+			padding: 2px 12px;
+			border-bottom: 1px solid grey;
+			&:first-child {
+				border-top: 1px solid grey;
+			}
+		}
+	}
+}
+
+
+#balance {
+	background-color: #2A2;
+	h2 {
+		font-size: 20px;
+		padding: 12px 0 0 12px;
+	}
+	p  {
+		font-size: 24px 
+		strong {
+			font-size: 36px;
+			margin: 0 12px 0 48px;
+		}
+	}
+
+}
+#bills {
+	background-color: #fff;
+	#money-right {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 3px;
+	}
+}
+
+@media (max-width: 767px) {
+	body {
+		margin-top: 160px;
+	}
+	#icon-menu {
+	  width: 100%;
+	  background-color: #fff;
+	  margin-top:60px;
+	  left: 0;
+	  margin: 60px 0;
+	}
+
+	#icon-menu ul li {
+	  width: 20%;
+	  padding: 5px
+	}
+}
+
