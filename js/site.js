@@ -69,16 +69,18 @@ function checkIfHouseExists() {
 function addUserToHouse() {
     var houseRef = myFirebaseRef.child("houses");
     var userRef = myFirebaseRef.child("users");
-    var houseID = $("#existingKey");
+    var houseID = $("#existingKey").val();
 
     userRef.child(authData.uid).update({
-        houseID: houseID.val()
+        houseID: houseID
     });
 
-    houseRef.child(houseID.val()).child("members").child("uid").child(authData.uid).update({
+    houseRef.child(houseID).child("members").child("uidOfMembers").child(authData.uid).update({
         uid: authData.uid,
         profilePicture: authData.facebook.cachedUserProfile.picture.data.url
     });
+
+    checkIfHouseExists();
 }
 
 
@@ -88,19 +90,22 @@ function addHouse() {
     var AddressTown = $("#AddressTown");
     var AddressCounty = $("#AddressCounty");
     var AddressPostCode = $("#AddressPostCode");
-
+    var houseNickName = $("#houseNickName").val();
+    
     var newHouse = houseRef.push({
         firstLine: AddressFirstLine.val(),
         town: AddressTown.val(),
         county: AddressCounty.val(),
         postcode: AddressPostCode.val(),
-        members: {
-            uid: authData.uid,
-            profilePicture: authData.facebook.cachedUserProfile.picture.data.url
-        }
+        nickName: houseNickName
     });
 
     var uid = newHouse.key();
+
+    newHouse.child("members").child("uidOfMembers").child(authData.uid).update({
+        uid: authData.uid,
+        profilePicture: authData.facebook.cachedUserProfile.picture.data.url
+    });
 
     newHouse.update({
         uid: uid
@@ -110,18 +115,15 @@ function addHouse() {
     userRef.child(authData.uid).update({
         houseID: uid
     });
+
+    checkIfHouseExists();
+
 }
 
 function setHouseNickname() {
     var houseRef = myFirebaseRef.child("houses");
     var userRef = myFirebaseRef.child("users").child(authData.uid);
-    var houseNickName = $("#houseNickName").val();
-    userRef.on("value", function (snapshot) {
-        var data = snapshot.val();
-        houseRef.child(data.houseID).update({
-            nickName: houseNickName
-        });
-    });
+
 }
 
 function viewProfilePicture(authData) {
@@ -143,10 +145,10 @@ function getHouseHoldProfilePictures() {
     userRef.child(authData.uid).child("houseID").on("value", function (snapshot) {
         var houseID = snapshot.val();
 
-        houseRef.child(houseID).child("members").child("uid").orderByChild("uid").on("value", function (snapshot) {
+        houseRef.child(houseID).child("members").child("uidOfMembers").orderByChild("uid").on("value", function (snapshot) {
+            var data1 = snapshot.val();
             snapshot.forEach(function (childSnapshot) {
                 var data = childSnapshot.val();
-
                 if (data.uid != authData.uid) {
                     var profilePicture = $("<li><img src='" + data.profilePicture + "'></li>");
                     pictureList.append(profilePicture);
