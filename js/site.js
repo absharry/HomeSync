@@ -72,7 +72,7 @@ function addUserToHouse() {
     var houseID = $("#existingKey");
 
     userRef.child(authData.uid).update({
-        houseID: uid
+        houseID: houseID
     });
 
     houseRef.child(houseID).child("members").push({
