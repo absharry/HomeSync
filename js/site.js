@@ -32,7 +32,7 @@ $(function checkLogInState() {
         $(".logged-out").hide();
         loggedIn();
     } else {
-        $("body").css("background-image","img/splash.jpg");
+        $("body").css({"background":"url(img/splash_bg.jpg) no-repeat center center fixed"});
         $(".logged-out").show();
     }
 })
@@ -227,17 +227,10 @@ $(function showMessage() {
     })
 })
 
-$('.autoplay').slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2000,
-});
-
 function changeToDoList(){
     $(".toDoListCheckBox").each(function(){
        if($(this).attr("value")){
-           $(this).css("text-decoration","line-through");
+           $(this).css({"text-decoration":"line-through"});
        }
     });
 }
