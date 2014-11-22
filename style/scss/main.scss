@@ -32,9 +32,15 @@ body {
     padding: 20px;
     background-color: $red;
     width: 100%;
+    img {
+    	height: 65px;
+    	margin-left: 10px;
+    }
     h1 {
     	display: inline-block;
     	float: left;
+    	width: 100%;
+    	margin: 0 0 10px;
     }
     #houseHoldProfilePictures {
     	float: left;
