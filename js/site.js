@@ -54,6 +54,7 @@ function loggedIn() {
     viewProfilePicture(authData);
     checkIfHouseExists();
     houseDetails();
+    $(".logged-in").show();
 }
 
 function checkIfHouseExists() {
