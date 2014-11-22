@@ -27,10 +27,10 @@ function houseDetails() {
     });
 }
 
-function checkLogInState(){
-    if(authData){
-        
-    }else{
+function checkLogInState() {
+    if (authData) {
+
+    } else {
         logIn();
     }
 }
@@ -53,18 +53,32 @@ function logIn() {
     });
 }
 
-function checkIfHouseExists(){
+function checkIfHouseExists() {
     var userRef = myFirebaseRef.child("users");
-    userRef.child(authData.uid).on("value",function(snapshot){
+    userRef.child(authData.uid).on("value", function (snapshot) {
         var data = snapshot.val();
-        if(data.houseID==null){
+        if (data.houseID == null) {
             $(".logged-in-no-house").show();
             $(".logged-in").hide();
-        }
-        else{
+        } else {
             $(".logged-in-no-house").hide();
         }
     })
+}
+
+function addUserToHouse() {
+    var houseRef = myFirebaseRef.child("houses");
+    var userRef = myFirebaseRef.child("users");
+    var houseID = $("#existingKey");
+
+    userRef.child(authData.uid).update({
+        houseID: uid
+    });
+
+    houseRef.child(houseID).child("members").push({
+        uid: authData.uid,
+        profilePicture: authData.facebook.cachedUserProfile.picture.data.url
+    });
 }
 
 
@@ -79,7 +93,11 @@ function addHouse() {
         firstLine: AddressFirstLine.val(),
         town: AddressTown.val(),
         county: AddressCounty.val(),
-        postcode: AddressPostCode.val()
+        postcode: AddressPostCode.val(),
+        members: {
+            uid: authData.uid,
+            profilePicture: authData.facebook.cachedUserProfile.picture.data.url
+        }
     });
 
     var uid = newHouse.key();
@@ -108,7 +126,26 @@ function setHouseNickname() {
 
 function viewProfilePicture(authData) {
     myFirebaseRef.child('users').child(authData.uid).child('facebook').child('cachedUserProfile').child('picture').child('data').child("url").on("value", function (snapshot) {
-        $("#currentUsersProfilePicture").attr("src",snapshot.Val());
+        var data = snapshot.val();
+        console.log(data);
+        $("#currentUsersProfilePicture").attr("src", data);
+    })
+}
+
+function getHouseHoldProfilePictures() {
+    var houseRef = myFirebaseRef.child("houses");
+    var userRef = myFirebaseRef.child("users");
+
+    var pictureList = $("#houseHoldProfilePictures");
+
+    userRef.child(authData.uid).child("houseID").on("value", function (snapshot) {
+        var houseID = snapshot.val();
+
+        houseRef.child(houseID).child("members").orderByChild("uid").on("value", function (snapshot) {
+            var data = snapshot.val();
+            var messageElement = $("<li><img src='"+data.profilePicture+"'></li>")
+            messageList.append(messageElement);
+        })
     })
 }
 
