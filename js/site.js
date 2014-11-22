@@ -75,7 +75,7 @@ function addUserToHouse() {
         houseID: houseID.val()
     });
 
-    houseRef.child(houseID.val()).child("members").push({
+    houseRef.child(houseID.val()).child("members").child("uid").child(authData.uid).update({
         uid: authData.uid,
         profilePicture: authData.facebook.cachedUserProfile.picture.data.url
     });
@@ -129,7 +129,9 @@ function viewProfilePicture(authData) {
         var data = snapshot.val();
         console.log(data);
         $("#currentUsersProfilePicture").attr("src", data);
-    })
+    });
+    
+    getHouseHoldProfilePictures();
 }
 
 function getHouseHoldProfilePictures() {
@@ -141,10 +143,10 @@ function getHouseHoldProfilePictures() {
     userRef.child(authData.uid).child("houseID").on("value", function (snapshot) {
         var houseID = snapshot.val();
 
-        houseRef.child(houseID).child("members").orderByChild("uid").on("value", function (snapshot) {
+        houseRef.child(houseID).child("members").child("uid").orderByChild("uid").on("value", function (snapshot) {
             var data = snapshot.val();
-            var messageElement = $("<li><img src='"+data.profilePicture+"'></li>")
-            messageList.append(messageElement);
+            var profilePicture = $("<li><img src='"+data.profilePicture+"'></li>");
+            pictureList.append(profilePicture);
         })
     })
 }
