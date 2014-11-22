@@ -163,56 +163,58 @@ function getHouseHoldProfilePictures() {
     })
 }
 
+function messaging() {
+    var messageField = $('#messageInput');
+    var nameField = authData.facebook.displayName;
+    var picture = $('#pictureInput');
 
-var messageField = $('#messageInput');
-var nameField = authData.facebook.displayName;
-var messageList = $('#example-messages');
-var picture = $('#pictureInput');
+    var uid = authData.uid;
+    var name = authData.facebook.displayName;
+    var message = messageField.val();
+    var messages = myFirebaseRef.child('messages');
 
-messages = myFirebaseRef.child('messages');
-messageField.keypress(function (e) {
-    if (e.keyCode == 13) {
-        var uid = authData.uid;
-        var name = authData.facebook.displayName;
-        var message = messageField.val();
-        var type;
+    messages.push({
+        uid: uid,
+        name: name,
+        timeStamp: Date.now(),
+        picture: picture.val(),
+        text: message
+    });
+    messageField.val('');
+    picture.val('');
+}
 
-        messages.push({
-            uid: uid,
-            name: name,
-            timeStamp: Date.now(),
-            picture: picture.val(),
-            text: message
-        });
-        messageField.val('');
-        picture.val('');
-    }
-});
+$(function () {
+    messages = myFirebaseRef.child('messages');
+    var messageList = $('#example-messages');
 
-messages.limit(10).on('child_added', function (snapshot) {
-    //GET DATA
-    var data = snapshot.val();
-    var userID = data.uid;
-    var username = data.name;
-    var message = data.text;
-    var picture = data.picture;
+    messages.limit(10).on('child_added', function (snapshot) {
+        //GET DATA
+        var data = snapshot.val();
+        var userID = data.uid;
+        var username = data.name;
+        var message = data.text;
+        var picture = data.picture;
 
-    var messageElement = $("<li>");
-    var nameElement = $("<strong class='example-chat-username'></strong>");
+        var messageElement = $("<li>");
+        var nameElement = $("<strong class='example-chat-username'></strong>");
 
 
-    nameElement.text(username);
-    messageElement.text(message).prepend(nameElement);
+        nameElement.text(username);
+        messageElement.text(message).prepend(nameElement);
 
-    if (picture) {
-        var imageElement = $("<img class='uploadedImage' src='" + picture + "'>");
-        messageElement.append(imageElement);
-    }
-    messageList.prepend(messageElement);
+        if (picture) {
+            var imageElement = $("<img class='uploadedImage' src='" + picture + "'>");
+            messageElement.append(imageElement);
+        }
+        messageList.prepend(messageElement);
 
-    messageList[0].scrollTop = messageList[0].scrollHeight;
+        messageList[0].scrollTop = messageList[0].scrollHeight;
 
-});
+    });
+})
+
+
 
 function removeProfilePicture() {
     $(".profilePicture").html("");
