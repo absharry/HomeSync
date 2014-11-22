@@ -90,20 +90,22 @@ function addHouse() {
     var AddressTown = $("#AddressTown");
     var AddressCounty = $("#AddressCounty");
     var AddressPostCode = $("#AddressPostCode");
-
+    var houseNickName = $("#houseNickName").val();
+    
     var newHouse = houseRef.push({
         firstLine: AddressFirstLine.val(),
         town: AddressTown.val(),
         county: AddressCounty.val(),
-        postcode: AddressPostCode.val()
+        postcode: AddressPostCode.val(),
+        nickName: houseNickName
     });
-    
+
     var uid = newHouse.key();
-    
+
     newHouse.child("members").child("uidOfMembers").child(authData.uid).update({
         uid: authData.uid,
         profilePicture: authData.facebook.cachedUserProfile.picture.data.url
-    });    
+    });
 
     newHouse.update({
         uid: uid
@@ -121,13 +123,7 @@ function addHouse() {
 function setHouseNickname() {
     var houseRef = myFirebaseRef.child("houses");
     var userRef = myFirebaseRef.child("users").child(authData.uid);
-    var houseNickName = $("#houseNickName").val();
-    userRef.on("value", function (snapshot) {
-        var data = snapshot.val();
-        houseRef.child(data.houseID).update({
-            nickName: houseNickName
-        });
-    });
+
 }
 
 function viewProfilePicture(authData) {
