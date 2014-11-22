@@ -300,3 +300,16 @@ input[type=text] {
 	}
 }
 
+
+.toDoList {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  margin-bottom: 30px
+	input {
+		display: inline-block;
+		margin: 10px 0;
+		margin-right: 10px
+	}
+}
+
