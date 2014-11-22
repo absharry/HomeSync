@@ -226,7 +226,13 @@ $(function showMessage() {
     })
 })
 
-
+function changeToDoList(){
+    $(".toDoListCheckBox").each(function(){
+       if($(this).attr("value")){
+           $(this).css("text-decoration","line-through");
+       }
+    });
+}
 function removeProfilePicture() {
     $(".profilePicture").html("");
 }
