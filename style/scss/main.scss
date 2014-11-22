@@ -224,6 +224,14 @@ input[type=text] {
 	border-radius: 3px;
 }
 
+.module-white {
+	background-color: #fff;
+}
+
+.right-column > div {
+	margin-bottom: 30px;
+}
+
 #bill-overview {
 	background-color: #fff;
 	h2 {
@@ -305,6 +313,7 @@ input[type=text] {
   padding: 5px;
   border-radius: 3px;
   margin-bottom: 30px;
+
 	input {
 		display: inline-block;
 		margin: 10px 0;
