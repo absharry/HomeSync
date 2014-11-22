@@ -27,11 +27,23 @@ body {
 }
 
 .houseDetails{
+	@include clearfix();
     position: relative;
     padding: 20px;
     background-color: $red;
-    height: 100px;
-    width: 100%
+    width: 100%;
+    h1 {
+    	display: inline-block;
+    	float: left;
+    }
+    #houseHoldProfilePictures {
+    	float: left;
+    	padding: 0;
+    	li {
+    		list-style-type: none;
+
+    	}
+    }
 }
 
 #houseName{
@@ -129,6 +141,10 @@ input[type=text] {
 	h1 {
 		margin: 0 !important;
 	}
+}
+
+.house-details {
+	
 }
 
 .example-chat {
