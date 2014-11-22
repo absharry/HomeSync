@@ -36,8 +36,8 @@ body {
 }
 
 * {
- font-size: 100%;
- font-family: Arimo, Helvetica, Ariel, sans-serif;
+	font-size: 100%;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 }
 
 input[type=text] {
@@ -124,24 +124,22 @@ input[type=text] {
 }
 
 #example-messages {
-	ul {
-		padding: 0 100px;
+	padding: 0 100px;
 
-		li {
-			font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
-			background-color: #fff;
-			padding: 10px 15px;
-			-webkit-border-radius: 3px;
-			-moz-border-radius: 3px;
-			border-radius: 3px;
-			list-style-type: none;
-			margin-top: 10px
+	li {
+		font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
+		background-color: #fff;
+		padding: 10px 15px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		list-style-type: none;
+		margin-top: 10px
 
 
-			strong {
-				margin-right: 1em;
-			}
-		}	
+		strong {
+			margin-right: 1em;
+		}
 	}
 }
 
@@ -152,5 +150,9 @@ input[type=text] {
 }
 
 .module {
+	margin-bottom: 30px;
+}
+
+.module-shadow {
 	@include shadow();
 }
