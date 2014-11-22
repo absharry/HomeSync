@@ -158,6 +158,7 @@ function getHouseHoldProfilePictures() {
 var messageField = $('#messageInput');
 var nameField = authData.facebook.displayName;
 var messageList = $('#example-messages');
+var picture = $('#pictureInput');
 
 messages = myFirebaseRef.child('messages');
 messageField.keypress(function (e) {
@@ -165,12 +166,13 @@ messageField.keypress(function (e) {
         var uid = authData.uid;
         var name = authData.facebook.displayName;
         var message = messageField.val();
-
+        var type;
+        
         messages.push({
             uid: uid,
             name: name,
-            type: null,
             timeStamp: Date.now(),
+            picture:picture.val(),
             text: message
         });
         messageField.val('');
@@ -183,18 +185,28 @@ messages.limit(10).on('child_added', function (snapshot) {
     var userID = data.uid;
     var username = data.name;
     var message = data.text;
+    var picture = data.picture;
 
     var messageElement = $("<li>");
-    var nameElement = $("<strong class='example-chat-username'></strong>")
+    var nameElement = $("<strong class='example-chat-username'></strong>");
+    
+    
     nameElement.text(username);
     messageElement.text(message).prepend(nameElement);
-
+    
+    if(picture){
+        var imageElement = $("<img class='uploadedImage' src='"+picture+"'>");
+        messageElement.append(imageElement);
+    }
     messageList.prepend(messageElement);
 
     messageList[0].scrollTop = messageList[0].scrollHeight;
 
 });
 
+function showImageMessage(){
+    
+}
 
 function removeProfilePicture() {
     $(".profilePicture").html("");
