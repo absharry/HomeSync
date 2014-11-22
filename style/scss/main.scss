@@ -62,6 +62,13 @@ input[type=text] {
 			float: left;
 			width: 100px;
 			text-align: center;
+			a {
+				img {
+					height: 60px;
+					box-sizing: border-box;
+					padding: 5px;
+				}
+			}
 		} 
 	}
 }
