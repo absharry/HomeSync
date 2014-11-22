@@ -32,6 +32,7 @@ $(function checkLogInState() {
         $(".logged-out").hide();
         loggedIn();
     } else {
+        $("body").css("background-image","img/splash.jpg");
         $(".logged-out").show();
     }
 })
@@ -225,6 +226,13 @@ $(function showMessage() {
         });
     })
 })
+
+$('.autoplay').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+});
 
 function changeToDoList(){
     $(".toDoListCheckBox").each(function(){
