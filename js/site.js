@@ -20,7 +20,7 @@ function houseDetails() {
             houseRef.child(houseID).on("value", function (snapshot) {
                 var data = snapshot.val();
                 var housename = data.nickName;
-                $("#houseName").html("The houseshare management portal for " + housename);
+                $("#houseName").html(housename);
             });
 
         }
@@ -46,6 +46,7 @@ function logIn() {
         } else {
             viewProfilePicture(authData);
             checkIfHouseExists();
+            houseDetails();
             $(".logged-in").slideDown("slow");
             $(".logged-out").slideUp("slow");
         }
@@ -146,7 +147,7 @@ messages.limit(10).on('child_added', function (snapshot) {
     nameElement.text(username);
     messageElement.text(message).prepend(nameElement);
 
-    messageList.append(messageElement);
+    messageList.prepend(messageElement);
 
     messageList[0].scrollTop = messageList[0].scrollHeight;
 
