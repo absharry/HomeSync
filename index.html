@@ -1,137 +1,52 @@
 <!DOCTYPE html>
-<html lang="">
+<html ng-app="digs">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <title>Digs</title>
-    <link rel="shortcut icon" href="">
+
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Coming+Soon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="style/css/main.css">
+    <link rel="stylesheet" href="css/main.css">
 
-    <!--[if IE]>
-        <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body>
-
-    <nav id="digs-nav" role="navigation">
-        <img id="main-digs-logo" src="img/logo.png" />
-
-        <div id="icon-menu">
-            <ul>
-                <li>
-                    <a href="index.html">
-                        <img class="nav-logo" src="img/dashboard.png">
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html">
-                        <img class="nav-logo" src="img/cal.png">
-                    </a>
-                </li>
-                <li>
-                    <a href="money.html">
-                        <img class="nav-logo" src="img/bank.png">
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html">
-                        <img class="nav-logo" src="img/shopping.png">
-                    </a>
-                </li>
-                <li>
-                    <a href="profile.html">
-                        <img class="nav-logo" src="img/profile.png">
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-    </nav>
-
-    <div class="container logged-out" style="display: none;">
-        <div class="welcome-wrapper">
-            <div class="welcomeTitle">
-                <h1 class="title">Welcome to Digs</h1>
-                <img id="login-digs-logo" src="img/logo.png" />
-                <h2>Social homeshare portal</h2>
-            </div>
-            <div class="loginContainer">
-                <button class="logInButton" onClick="logIn()">Login!</button>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container logged-in-no-house row" style="display: none;">
-        <div class="addHouse">
-            <input type="text" id="houseNickName" placeholder="Enter House Name">
-            <input type="text" id="AddressFirstLine" placeholder="First Line of Address">
-            <input type="text" id="AddressTown" placeholder="Town">
-            <input type="text" id="AddressCounty" placeholder="County">
-            <input type="text" id="AddressPostCode" placeholder="Postcode">
-            <button onClick="addHouse()">SUBMIT</button>
-
-            <br>
-            <br>
-            <br>
-            <input type "text" id="existingKey" placeholder="Enter Existing Key">
-            <button onClick="addUserToHouse()">SUBMIT</button>
-        </div>
-    </div>
-
-
-    <div class="container logged-in row" style="display: none;">
-
-        <div class="col-md-8 left-column">
-
-            <div class="houseDetails module moduke-shadow">
-                <h1 id="houseName"></h1>
-                <img id="currentUsersProfilePicture">
-                <div id="otherHouseUsers">
-                    <ul id="houseHoldProfilePictures"></ul>
-                </div>
-            </div>
-
-            <div class="example-chat l-demo-container module">
-                <input type='text' id='messageInput' placeholder='Type a message...'>
-                <input type='text' id='pictureInput' placeholder='Upload an Image URL'>
-                <button id='post' onClick='messaging()'>Post to wall!</button>
-                <ul id='example-messages' class="example-chat-messages"></ul>
-            </div>
-
-        </div>
-
-
-
-        <div class="col-md-4 right-column">
-
-            <div class="module-shadow module-rounded module-white">
-                <img src="img/notification.png" style="width:100%; padding: 5px;">
-            </div>
-            <div class="module-shadow module-rounded module-white">
-                <img src="img/todo.png" style="width:100%; padding: 5px;">
-            </div>
-            <div class="demo-module module">
-                <img id="just-eat" src="img/just-eat.png">
-            </div>
-        </div>
-
-
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
     <script src="js/site.js"></script>
+    <script src="js/CalendarController.js"></script>
+    <script src="js/DashBoardController.js"></script>
+    <script src="js/LoginController.js"></script>
+    <script src="js/MoneyController.js"></script>
+    <script src="js/ProfileController.js"></script>
+    <script src="js/UserController.js"></script>
+    
+
+</head>
+
+<body>
+    <div ng-controller="UserController">
+        <header>
+            <nav id="digs-nav">
+                <img id="main-digs-logo" src="img/logo.png" />
+                <div id="icon-menu">
+                    <ul>
+                        <li ng-repeat="nav in navigation">
+                            <a href={{nav.href}}>
+                                <img class="nav-logo" src={{nav.icon}}>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div ng-view></div>
+    </div>
 </body>
 
 </html>
