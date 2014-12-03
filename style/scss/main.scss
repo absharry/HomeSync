@@ -1,0 +1,323 @@
+$lightGrey: #E9EAED;
+$midGrey: #D8D8D8;
+$darkGrey: #505050;
+$red: #E56660;
+$darkRed: #B7524D;
+
+@mixin shadow() {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow:    0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+	box-shadow:         0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+body {
+	background-color: $lightGrey;
+	margin-top: 90px;
+
+	&> container {
+		margin-top: 30px;
+	}
+
+}
+
+.row {
+	margin: 0 auto;
+}
+
+.houseDetails{
+	@include clearfix();
+    position: relative;
+    padding: 20px;
+    background-color: $red;
+    width: 100%;
+    img {
+    	height: 65px;
+    	margin-left: 10px;
+    }
+    h1 {
+    	display: inline-block;
+    	float: left;
+    	width: 100%;
+    	margin: 0 0 10px;
+    }
+
+    #otherHouseUsers {
+    	float: left;
+    }
+
+    #houseHoldProfilePictures {
+    	@include clearfix();
+    	float: left;
+    	padding: 0;
+    	li {
+    		list-style-type: none;
+    		float: left
+    	}
+    }
+}
+
+#houseName{
+    color: white;
+    font-size: 20px;
+}
+
+* {
+	font-size: 100%;
+	font-family: "Open Sans", Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
+
+input[type=text] {
+	font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
+}
+
+#digs-nav {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+#icon-menu {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -250px;
+	width: 500px;
+	float: left;
+	ul {
+		padding: 0;
+		li {
+			list-style-type: none;
+			float: left;
+			width: 100px;
+			text-align: center;
+			a {
+				img {
+					height: 60px;
+					box-sizing: border-box;
+					padding: 5px;
+				}
+			}
+		} 
+	}
+}
+
+#digs-nav {
+	#main-digs-logo {
+		height: 60px;
+	}
+}
+
+.container.logged-in, .container.logged-out {
+	margin-top: 30px;
+}
+
+.welcome-wrapper {
+	@include shadow();
+	@include clearfix();
+	margin: 100px auto;
+	padding: 10px 20px;
+	width: 100%;
+	max-width: 400px;
+	background-color: $red;
+	.welcomeTitle {
+		text-align: center !important;
+		color: #fff;
+	}
+	.loginContainer {
+		display: inline;
+		width: 100%;
+		height: 35px;
+		h2 {
+			font-size: 24px;
+		}
+		#login-digs-logo {
+			width: 100%;
+			max-width: 100%;
+		}
+		.logInButton {
+			width: 100%;
+			height: 35px;
+			background-color: #B7524D;
+			color: #fff;
+			margin-top: 20px;
+			border: 0;
+		}
+	}
+}
+
+#digs-nav {
+	@include shadow();
+	width: 100%;
+	height: 60px;
+	background-color: #fff;
+	h1 {
+		margin: 0 !important;
+	}
+}
+
+.house-details {
+	
+}
+
+.example-chat {
+	padding: 15px 0;
+
+	#messageInput {
+		width: 100% !important;
+		height: 5em !important;
+	}
+
+	#example-messages {
+		padding: 0 !important;
+		li {
+
+			font-family: "Coming Soon", Helvetica, Ariel, sans-serif !important;
+			background-color: #fff;
+			padding: 10px 15px;
+			list-style-type: none;
+			margin-top: 10px !important;
+
+			.uploadedImage {
+				width: 100%;
+				max-width: 100%;
+			}
+
+			.example-chat-username {
+				display: inline-block;
+				width: 100%;
+				border-bottom: 1px solid $darkGrey;
+				margin: 0.5em 0 1em;
+				margin-right: 1em;
+			}
+		}
+	}
+}
+
+.demo-module {
+	background-color: $midGrey;
+
+	img {
+		width: 100%;
+		max-width: 100%;
+	}
+}
+
+.module {
+	margin-bottom: 30px;
+}
+
+.module-shadow {
+	@include shadow();
+}
+
+.module-rounded {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.module-white {
+	background-color: #fff;
+}
+
+.right-column > div {
+	margin-bottom: 30px;
+}
+
+#bill-overview {
+	background-color: #fff;
+	h2 {
+		display: inline-block;
+		width: 100%;
+		margin: 0;
+		padding: 5px;
+		text-align: center;
+	}
+	h3 {
+		font-size: 14px;
+		background-color: $red;
+		margin: 0;
+		color: white;
+		margin: 0;
+		padding: 5px;
+		text-align: center;
+	}
+	ul {
+		padding: 0;
+		margin: 0;
+		li {
+			font-size: 24px;
+			list-style-type: none;
+			padding: 2px 12px;
+			border-bottom: 1px solid grey;
+			&:first-child {
+				border-top: 1px solid grey;
+			}
+		}
+	}
+}
+
+
+#balance {
+	background-color: #2A2;
+	h2 {
+		font-size: 20px;
+		padding: 12px 0 0 12px;
+	}
+	p  {
+		font-size: 24px 
+		strong {
+			font-size: 36px;
+			margin: 0 12px 0 48px;
+		}
+	}
+
+}
+#bills {
+	background-color: #fff;
+	#money-right {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 3px;
+	}
+}
+
+@media (max-width: 767px) {
+	body {
+		margin-top: 160px;
+	}
+	#icon-menu {
+	  width: 100%;
+	  background-color: #fff;
+	  margin-top:60px;
+	  left: 0;
+	  margin: 60px 0;
+	}
+
+	#icon-menu ul li {
+	  width: 20%;
+	  padding: 5px
+	}
+}
+
+.toDoList {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  margin-bottom: 30px;
+
+	input {
+		display: inline-block;
+		margin: 10px 0;
+		margin-right: 10px
+	}
+}
+
